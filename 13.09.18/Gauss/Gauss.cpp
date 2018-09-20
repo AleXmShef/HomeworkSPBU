@@ -68,21 +68,18 @@ private:
 
 class GaussSolver {
 public:
-    float* Solve(Matrix* EqMatrix) {
+    void Solve(Matrix* EqMatrix) {
         EquationMatrix = EqMatrix;
         float* Solution = new float(EquationMatrix->GetMatrixInfo()[1]);
         Triangulate();
         EquationMatrix->PrintMarix();
         for (size_t i = EquationMatrix->GetMatrixInfo()[1] - 1; i >= 0; --i) {
-            // if (EquationMatrix->GetppMatrixArray()[i][i] == 0) {
-                Solution[i] = EquationMatrix->GetppMatrixArray()[i][EquationMatrix->GetMatrixInfo()[1]]/EquationMatrix->GetppMatrixArray()[i][i];
-                std::cout << "Solution: " << Solution[i] << std::endl;
-                for (size_t j = 0; j < i; ++j) {
-                    EquationMatrix->GetppMatrixArray()[j][EquationMatrix->GetMatrixInfo()[1]]-=((EquationMatrix->GetppMatrixArray()[j][i])*Solution[i]);
-                }
-            // }
+            Solution[i] = EquationMatrix->GetppMatrixArray()[i][EquationMatrix->GetMatrixInfo()[1]]/EquationMatrix->GetppMatrixArray()[i][i];
+            std::cout << "Solution: " << Solution[i] << std::endl;
+            for (size_t j = 0; j < i; ++j) {
+                EquationMatrix->GetppMatrixArray()[j][EquationMatrix->GetMatrixInfo()[1]]-=((EquationMatrix->GetppMatrixArray()[j][i])*Solution[i]);
+            }
         }
-        return Solution;
     }
 private:
     Matrix* EquationMatrix = nullptr;
@@ -103,9 +100,6 @@ private:
             }
         }
     }
-
-
-
 };
 
 int main(){
@@ -127,11 +121,7 @@ int main(){
 
     GaussSolver* mGaussSolver = new GaussSolver;
 
-    auto Result = mGaussSolver->Solve(EquationMatrix);
-
-    for (size_t i = 0; i < equation_count; i++) {
-        std::cout << Result[i] << " ";
-    }
+    mGaussSolver->Solve(EquationMatrix);
 
     return 0;
 }
