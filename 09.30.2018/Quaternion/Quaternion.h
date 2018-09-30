@@ -4,12 +4,14 @@
 class Quaternion{
 public:
     Quaternion(Vector*, float);
-    
+
     float GetAngle();
-    Vector* GetVector();
+    Vector GetVector();
 
     Quaternion operator* (Quaternion&);
     Quaternion operator+ (Quaternion&);
+
+    void PrinQuaternion();
 
 
 protected:

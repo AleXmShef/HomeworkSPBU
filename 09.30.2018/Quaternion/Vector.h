@@ -5,9 +5,10 @@ public:
     float y;
     float z;
     float Lenght;
-    Vector operator* (Vector);
+    Vector operator* (Vector&);
     Vector operator* (float);
-    Vector operator+ (Vector);
-    float ScalarMult (Vector);
+    Vector operator+ (Vector&);
+    float ScalarMult (Vector&);
+    void PrintVec();
 
 };
