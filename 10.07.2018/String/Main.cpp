@@ -9,6 +9,6 @@ int main() {
     str3.PrintString();
     // str1.PrintString();
 
-    _getch();
+    system("pause");
     return 0;
 }
