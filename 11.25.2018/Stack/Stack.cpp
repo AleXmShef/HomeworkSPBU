@@ -14,7 +14,6 @@ public:
         head=new node;
         head->data=a;
         head->next=NULL;
-        maxElement = a;
     }
 
     ~Stack() {
@@ -31,9 +30,6 @@ public:
             temp->data=a;
             temp->next=head;
             head=temp;
-            if (a > maxElement) {
-                maxElement = a;
-            }
         }
     }
 
@@ -45,29 +41,14 @@ public:
             delete temp;
             return a;
         }
-        maxElement = 0;
-        node* temp = head;
-        for(;;) {
-            if (temp->data > maxElement)
-                maxElement = temp->data;
-            if (temp->next == nullptr) break;
-            else temp = temp->next;
-        }
+        else
+            return NULL;
     }
 
-    int getMaxElement() {
-        return maxElement;
+    int top() {
+        return head->data;
     }
 
 public:
     node* head;
-    int maxElement = 0;
 };
-
-
-int main()
-{
-    Stack MyStack();
-
-	return 0;
-}
